@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XLeader Academy - Chibi Learning Video</title>
+  <style>
+    :root {
+      --red: #C22620;
+      --gold: #D4AF37;
+      --white: #FFFFFF;
+      --black: #000000;
+      --dark: #2B2B2B;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--white);
+      color: var(--dark);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+    }
+
+    .video {
+      position: relative;
+      width: min(100vw, 1280px);
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--dark);
+    }
+
+    .header,
+    .footer {
+      position: absolute;
+      left: 18px;
+      right: auto;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--dark);
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      letter-spacing: 0;
+    }
+
+    .header {
+      top: 14px;
+      height: 26px;
+    }
+
+    .footer {
+      bottom: 5px;
+      height: 18px;
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--dark);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--dark);
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    .logo-mark {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      background: var(--white);
+      color: var(--red);
+      border: 2px solid var(--gold);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      padding: 64px 64px 40px;
+      opacity: 0;
+      animation: scene 60s linear infinite;
+    }
+
+    .scene-1 { animation-delay: 0s; }
+    .scene-2 { animation-delay: -52s; }
+    .scene-3 { animation-delay: -43s; }
+    .scene-4 { animation-delay: -34s; }
+    .scene-5 { animation-delay: -25s; }
+    .scene-6 { animation-delay: -16s; }
+    .scene-7 { animation-delay: -8s; }
+
+    @keyframes scene {
+      0%, 12% { opacity: 1; }
+      14%, 100% { opacity: 0; }
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      letter-spacing: 0;
+      color: var(--red);
+      text-transform: none;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5.4vw, 64px);
+      line-height: 1.04;
+      max-width: 900px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3.4vw, 42px);
+      line-height: 1.08;
+      max-width: 760px;
+    }
+
+    p {
+      margin: 10px 0 0;
+      max-width: 680px;
+      color: var(--dark);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: clamp(15px, 1.55vw, 20px);
+      line-height: 1.24;
+      font-weight: 400;
+      text-wrap: pretty;
+      overflow-wrap: anywhere;
+    }
+
+    .red-panel {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .red-panel h1,
+    .red-panel h2,
+    .red-panel p,
+    .red-panel .footer,
+    .red-panel .header {
+      color: var(--white);
+    }
+
+    .red-panel .logo {
+      color: var(--white);
+    }
+
+    .red-panel .logo-mark {
+      background: var(--white);
+      color: var(--red);
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    .office-floor {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 28px;
+      height: 92px;
+      background: var(--gold);
+      opacity: 0.22;
+    }
+
+    .desk {
+      position: absolute;
+      left: 110px;
+      right: 110px;
+      bottom: 135px;
+      height: 42px;
+      background: var(--red);
+      border: 5px solid var(--dark);
+    }
+
+    .screen {
+      position: absolute;
+      right: 72px;
+      top: 235px;
+      width: 285px;
+      height: 165px;
+      padding: 20px;
+      border: 6px solid var(--dark);
+      background: var(--white);
+      box-shadow: 10px 10px 0 var(--gold);
+    }
+
+    .screen-title {
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      color: var(--red);
+      font-size: 23px;
+      line-height: 1.05;
+    }
+
+    .screen-line {
+      margin-top: 14px;
+      height: 18px;
+      background: var(--gold);
+    }
+
+    .team {
+      position: absolute;
+      left: 90px;
+      right: 90px;
+      bottom: 54px;
+      height: 250px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .team.large {
+      left: 46px;
+      right: 46px;
+      gap: 20px;
+      transform: scale(.82);
+      transform-origin: center bottom;
+    }
+
+    .team.challenge-team {
+      left: 35px;
+      right: auto;
+      width: 420px;
+      bottom: 34px;
+      gap: 10px;
+      transform: scale(.5);
+      transform-origin: left bottom;
+    }
+
+    .person {
+      position: relative;
+      width: 105px;
+      height: 178px;
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+
+    .person:nth-child(2) { animation-delay: .15s; }
+    .person:nth-child(3) { animation-delay: .3s; }
+    .person:nth-child(4) { animation-delay: .45s; }
+    .person:nth-child(5) { animation-delay: .6s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .head {
+      position: absolute;
+      top: 0;
+      left: 12px;
+      width: 82px;
+      height: 82px;
+      border: 5px solid var(--dark);
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .hair {
+      position: absolute;
+      top: -3px;
+      left: 16px;
+      width: 72px;
+      height: 34px;
+      border-radius: 40px 40px 18px 18px;
+      background: var(--dark);
+    }
+
+    .eye {
+      position: absolute;
+      top: 39px;
+      width: 10px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dark);
+    }
+
+    .eye.left { left: 31px; }
+    .eye.right { right: 31px; }
+
+    .smile {
+      position: absolute;
+      left: 34px;
+      top: 58px;
+      width: 25px;
+      height: 12px;
+      border-bottom: 4px solid var(--red);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .body {
+      position: absolute;
+      left: 18px;
+      top: 76px;
+      width: 70px;
+      height: 82px;
+      border: 5px solid var(--dark);
+      background: var(--red);
+    }
+
+    .person.gold .body {
+      background: var(--gold);
+    }
+
+    .tag {
+      position: absolute;
+      top: 96px;
+      left: 33px;
+      width: 40px;
+      height: 16px;
+      background: var(--white);
+      border: 3px solid var(--dark);
+    }
+
+    .leg {
+      position: absolute;
+      bottom: 0;
+      width: 22px;
+      height: 34px;
+      background: var(--dark);
+    }
+
+    .leg.left { left: 26px; }
+    .leg.right { right: 26px; }
+
+    .bubble {
+      position: absolute;
+      padding: 8px 13px;
+      border: 4px solid var(--dark);
+      background: var(--gold);
+      color: var(--black);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 15px;
+      animation: pop 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pop {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08) rotate(-2deg); }
+    }
+
+    .bubble.one { left: 110px; top: 228px; }
+    .bubble.two { left: 245px; top: 288px; animation-delay: .2s; }
+    .bubble.three { right: 110px; bottom: 72px; animation-delay: .4s; }
+    .bubble.four { left: 390px; top: 242px; animation-delay: .35s; }
+    .bubble.five { left: 555px; top: 300px; animation-delay: .5s; }
+    .bubble.six { right: 300px; top: 235px; animation-delay: .65s; }
+    .bubble.seven { right: 92px; top: 300px; animation-delay: .8s; }
+
+    .modules {
+      position: absolute;
+      left: 78px;
+      right: 78px;
+      top: 220px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .module {
+      min-height: 130px;
+      padding: 16px;
+      border: 5px solid var(--dark);
+      background: var(--white);
+      box-shadow: 8px 8px 0 var(--gold);
+      display: grid;
+      align-content: center;
+      gap: 10px;
+    }
+
+    .module strong {
+      color: var(--red);
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .module span {
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 400;
+      overflow-wrap: anywhere;
+    }
+
+    .wheel-wrap {
+      position: absolute;
+      left: 92px;
+      bottom: 48px;
+      width: 290px;
+      height: 290px;
+      display: grid;
+      place-items: center;
+    }
+
+    .wheel {
+      width: 250px;
+      height: 250px;
+      border: 8px solid var(--dark);
+      border-radius: 50%;
+      background:
+        conic-gradient(
+          var(--red) 0deg 60deg,
+          var(--gold) 60deg 120deg,
+          var(--white) 120deg 180deg,
+          var(--red) 180deg 240deg,
+          var(--gold) 240deg 300deg,
+          var(--white) 300deg 360deg
+        );
+      animation: spin 3s cubic-bezier(.18, .76, .28, 1) infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      70%, 100% { transform: rotate(780deg); }
+    }
+
+    .pointer {
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 24px solid transparent;
+      border-right: 24px solid transparent;
+      border-top: 58px solid var(--dark);
+    }
+
+    .challenge-list {
+      position: absolute;
+      right: 95px;
+      top: 180px;
+      width: 470px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .challenge-list div {
+      padding: 10px 16px;
+      border-left: 12px solid var(--gold);
+      background: var(--white);
+      color: var(--dark);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.15;
+      font-weight: 400;
+      overflow-wrap: anywhere;
+      opacity: 0;
+      transform: translateX(22px);
+      animation: revealAction 8.6s linear infinite;
+    }
+
+    .challenge-list div:nth-child(1) { animation-delay: .2s; }
+    .challenge-list div:nth-child(2) { animation-delay: 1.3s; }
+    .challenge-list div:nth-child(3) { animation-delay: 2.4s; }
+    .challenge-list div:nth-child(4) { animation-delay: 3.5s; }
+    .challenge-list div:nth-child(5) { animation-delay: 4.6s; }
+
+    @keyframes revealAction {
+      0%, 12% { opacity: 0; transform: translateX(22px); }
+      18%, 100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .split {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      top: 190px;
+      bottom: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 34px;
+    }
+
+    .panel {
+      position: relative;
+      padding: 18px;
+      border: 5px solid var(--dark);
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .status-label {
+      position: absolute;
+      left: 50%;
+      top: 90px;
+      transform: translateX(-50%);
+      padding: 8px 14px;
+      border: 3px solid var(--dark);
+      background: var(--gold);
+      color: var(--black);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .status-rotator .status-label,
+    .service-rotator .service-response {
+      opacity: 0;
+      animation: rotateStatus 12s linear infinite;
+    }
+
+    .status-rotator .status-label:nth-child(2),
+    .service-rotator .service-response:nth-child(2) {
+      animation-delay: 3s;
+    }
+
+    .status-rotator .status-label:nth-child(3),
+    .service-rotator .service-response:nth-child(3) {
+      animation-delay: 6s;
+    }
+
+    .status-rotator .status-label:nth-child(4),
+    .service-rotator .service-response:nth-child(4) {
+      animation-delay: 9s;
+    }
+
+    .service-response {
+      position: absolute;
+      left: 50%;
+      top: 86px;
+      width: min(82%, 340px);
+      transform: translateX(-50%);
+      padding: 9px 12px;
+      border: 3px solid var(--dark);
+      background: var(--gold);
+      color: var(--black);
+      font-family: "Aptos Display", Aptos, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    @keyframes rotateStatus {
+      0%, 18% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+      22%, 100% { opacity: 0; transform: translateX(-50%) translateY(-10px) scale(.96); }
+    }
+
+    .customer {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%) scale(.9);
+    }
+
+    .question {
+      position: absolute;
+      color: var(--red);
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      font-size: 50px;
+      animation: float 1.6s ease-in-out infinite;
+    }
+
+    .question.q1 { left: 60px; top: 58px; }
+    .question.q2 { right: 68px; top: 82px; animation-delay: .3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .stars {
+      margin-top: 22px;
+      color: var(--gold);
+      font-size: 50px;
+      letter-spacing: 6px;
+      text-shadow: 3px 3px 0 var(--dark);
+    }
+
+    .confetti {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .confetti i {
+      position: absolute;
+      top: -20px;
+      width: 16px;
+      height: 28px;
+      background: var(--gold);
+      animation: fall 2.8s linear infinite;
+    }
+
+    .confetti i:nth-child(2n) { background: var(--red); }
+    .confetti i:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .confetti i:nth-child(2) { left: 21%; animation-delay: .4s; }
+    .confetti i:nth-child(3) { left: 35%; animation-delay: .1s; }
+    .confetti i:nth-child(4) { left: 48%; animation-delay: .8s; }
+    .confetti i:nth-child(5) { left: 60%; animation-delay: .2s; }
+    .confetti i:nth-child(6) { left: 74%; animation-delay: .7s; }
+    .confetti i:nth-child(7) { left: 88%; animation-delay: .3s; }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(760px) rotate(280deg); }
+    }
+
+    .final-team {
+      transform: scale(.72);
+      transform-origin: center bottom;
+    }
+
+    .big-logo {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--white);
+      font-family: "Oswald", Impact, "Arial Narrow", sans-serif;
+      font-size: clamp(44px, 6.4vw, 82px);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .big-logo .logo-mark {
+      width: 60px;
+      height: 60px;
+      font-size: 40px;
+    }
+
+    .center {
+      text-align: center;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+    }
+
+    @media (max-width: 800px) {
+      .header,
+      .footer {
+        left: 18px;
+        right: 18px;
+      }
+
+      .footer {
+        font-size: 9px;
+      }
+
+      .scene {
+        padding: 58px 24px 34px;
+      }
+
+      .team {
+        gap: 10px;
+        left: 18px;
+        right: 18px;
+        transform: scale(.65);
+        transform-origin: center bottom;
+      }
+
+      .screen,
+      .challenge-list,
+      .modules,
+      .wheel-wrap,
+      .split {
+        transform: scale(.72);
+        transform-origin: top left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="video" aria-label="XLeader Academy chibi video prototype">
+    <div class="header">
+      <div class="logo"><span class="logo-mark">X</span><span>XLeader Academy</span></div>
+    </div>
+    <div class="footer">XLeader Academy | xleader.edu.vn | Tư duy Quản trị gốc</div>
+
+    <section class="scene scene-1 center red-panel">
+      <h1 class="gold-text">Học để phụng sự tốt hơn</h1>
+      <p>Văn hóa học tập trong XTEAM</p>
+    </section>
+
+    <section class="scene scene-2">
+      <h2>Hôm nay mình học gì để khách hàng tốt hơn?</h2>
+      <p>Leader hỏi XTEAM. Mỗi người mang một góc nhìn để phụng sự tốt hơn.</p>
+      <div class="office-floor"></div>
+      <div class="screen">
+        <div class="screen-title">Daily team check-in</div>
+        <div class="screen-line"></div>
+        <div class="screen-line" style="width:72%"></div>
+        <div class="screen-line" style="width:88%"></div>
+      </div>
+      <div class="bubble one">Lắng nghe sâu</div>
+      <div class="bubble two">Hiểu đúng nhu cầu</div>
+      <div class="bubble four">Phản hồi rõ</div>
+      <div class="bubble five">Chủ động hỗ trợ</div>
+      <div class="bubble six">Hỏi để hiểu</div>
+      <div class="bubble seven">Đề xuất tốt hơn</div>
+      <div class="bubble three">Theo đến cùng</div>
+      <div class="team large">
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+      </div>
+    </section>
+
+    <section class="scene scene-3">
+      <h2>15 phút học nhanh mỗi ngày</h2>
+      <p>XLeader Learning Sprint biến kinh nghiệm thành hành động cụ thể.</p>
+      <div class="modules">
+        <div class="module"><strong>Lắng nghe sâu hơn</strong><span>Hiểu đúng nhu cầu khách hàng</span></div>
+        <div class="module"><strong>Tư duy tốt hơn</strong><span>Nhìn vấn đề từ gốc</span></div>
+        <div class="module"><strong>Phụng sự tốt hơn</strong><span>Hành động nhanh và rõ</span></div>
+      </div>
+      <div class="bubble three">Ý tưởng mới</div>
+    </section>
+
+    <section class="scene scene-4 red-panel">
+      <h2 class="gold-text">XLeader Challenge</h2>
+      <p>Học tập là tương tác, thử nghiệm và cùng nhau tiến bộ.</p>
+      <div class="wheel-wrap">
+        <div class="pointer"></div>
+        <div class="wheel"></div>
+      </div>
+      <div class="team challenge-team">
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+      </div>
+      <div class="challenge-list">
+        <div>Phản hồi nhanh</div>
+        <div>Hiểu đúng nhu cầu</div>
+        <div>Đặt câu hỏi tốt</div>
+        <div>Chủ động hỗ trợ</div>
+        <div>Đề xuất giải pháp</div>
+      </div>
+    </section>
+
+    <section class="scene scene-5">
+      <h2>Customer insight → team learning → better service</h2>
+      <p>Khi team học cùng nhau, khách hàng nhận được sự thấu hiểu.</p>
+      <div class="split">
+        <div class="panel">
+          <strong style="font-family: Oswald, Impact, 'Arial Narrow', sans-serif;font-size:22px;color:var(--red);font-weight:400">Khách hàng</strong>
+          <div class="status-rotator">
+            <span class="status-label">Bối rối</span>
+            <span class="status-label">Lo lắng</span>
+            <span class="status-label">Khó quá</span>
+            <span class="status-label">Cần được hiểu</span>
+          </div>
+          <span class="question q1">?</span>
+          <span class="question q2">?</span>
+          <div class="person customer"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        </div>
+        <div class="panel">
+          <strong style="font-family: Oswald, Impact, 'Arial Narrow', sans-serif;font-size:22px;color:var(--red);font-weight:400">XTEAM phối hợp</strong>
+          <div class="service-rotator">
+            <span class="service-response">Chúng tôi sẽ phụng sự bạn</span>
+            <span class="service-response">Chúng tôi sẽ phụng sự bạn</span>
+            <span class="service-response">Chúng tôi sẽ phụng sự bạn</span>
+            <span class="service-response">Chúng tôi sẽ phụng sự bạn</span>
+          </div>
+          <div class="team" style="left:10px;right:10px;bottom:4px;gap:8px;transform:scale(.48);transform-origin:center bottom">
+            <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+            <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-6 center">
+      <h2>Khách hàng vui, team có ý nghĩa</h2>
+      <p>Cảm ơn XLeader Team!</p>
+      <div class="stars">★★★★★</div>
+      <div class="team final-team">
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+        <div class="person gold"><span class="head"><i class="hair"></i><i class="eye left"></i><i class="eye right"></i><i class="smile"></i></span><span class="body"></span><span class="tag"></span><span class="leg left"></span><span class="leg right"></span></div>
+      </div>
+      <div class="confetti"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="scene scene-7 center red-panel">
+      <h1>Học tập là cách để phụng sự khách hàng tốt nhất.</h1>
+    </section>
+  </main>
+  <script>
+    let audioContext;
+    let masterGain;
+    let musicTimer;
+    let isPlaying = false;
+    const melody = [
+      392, 440, 494, 440,
+      392, 330, 392, 494,
+      440, 392, 330, 294,
+      330, 392, 440, 392
+    ];
+
+    const harmony = [196, 220, 247, 220];
+
+    function playTone(frequency, startTime, duration) {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.045, startTime + 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      oscillator.connect(gain);
+      gain.connect(masterGain);
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration + 0.04);
+    }
+
+    function playHarmony(frequency, startTime) {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.025, startTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.9);
+
+      oscillator.connect(gain);
+      gain.connect(masterGain);
+      oscillator.start(startTime);
+      oscillator.stop(startTime + 0.96);
+    }
+
+    function scheduleLoop() {
+      const now = audioContext.currentTime;
+      melody.forEach((note, index) => {
+        playTone(note, now + index * 0.34, 0.28);
+      });
+      harmony.forEach((note, index) => {
+        playHarmony(note, now + index * 1.36);
+      });
+    }
+
+    function startMusic() {
+      if (isPlaying) {
+        if (audioContext && audioContext.state === "suspended") {
+          audioContext.resume();
+        }
+        return;
+      }
+      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+      if (!masterGain) {
+        masterGain = audioContext.createGain();
+        masterGain.connect(audioContext.destination);
+      }
+      masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+      masterGain.gain.value = 0.24;
+
+      audioContext.resume().finally(() => {
+        scheduleLoop();
+        musicTimer = window.setInterval(scheduleLoop, 5440);
+      });
+      isPlaying = true;
+    }
+
+    function stopMusic() {
+      window.clearInterval(musicTimer);
+      if (masterGain) {
+        masterGain.gain.setTargetAtTime(0.001, audioContext.currentTime, 0.05);
+      }
+      isPlaying = false;
+    }
+
+    window.addEventListener("load", startMusic);
+    ["pointerdown", "mousemove", "keydown", "touchstart"].forEach((eventName) => {
+      window.addEventListener(eventName, startMusic, { once: true });
+    });
+  </script>
+</body>
+</html>
